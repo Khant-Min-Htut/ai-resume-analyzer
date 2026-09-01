@@ -60,7 +60,7 @@ export default function ScoreCard({ label, score, icon: Icon, color }: ScoreCard
       <div className={cn('relative flex items-center justify-center rounded-2xl p-3', colors.bg)}>
         <Icon className={cn('w-5 h-5', colors.iconColor)} />
       </div>
-      <div className="relative w-28 h-28">
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
           <circle
             cx="50"
@@ -84,7 +84,7 @@ export default function ScoreCard({ label, score, icon: Icon, color }: ScoreCard
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className={cn('text-2xl font-bold tabular-nums', colors.text)}>
+          <span className={cn('text-xl sm:text-2xl font-bold tabular-nums', colors.text)}>
             {score}
           </span>
         </div>

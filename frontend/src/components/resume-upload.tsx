@@ -119,7 +119,7 @@ export default function ResumeUpload({
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className={`
-            border-2 border-dashed rounded-xl p-12 text-center transition-all duration-200
+            border-2 border-dashed rounded-xl p-6 sm:p-12 text-center transition-all duration-200
             ${
               isDragging
                 ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
@@ -152,7 +152,7 @@ export default function ResumeUpload({
               <Upload className="w-8 h-8" />
             </div>
             <div>
-              <p className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <p className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 Drop your resume here
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400">

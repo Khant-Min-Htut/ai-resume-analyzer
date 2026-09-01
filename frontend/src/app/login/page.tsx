@@ -31,9 +31,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4 sm:p-6">
       <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-5 sm:p-8">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back</h1>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Sign in to your account</p>
