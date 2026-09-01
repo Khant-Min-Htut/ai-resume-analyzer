@@ -23,17 +23,14 @@ export class ResumeAnalysisService {
     private readonly aiAnalysisService: AiAnalysisService,
   ) {}
 
-  async analyze(userId: string, resumeId: string, jobDescriptionId?: string) {
+  async analyze(userId: string, resumeId: string, jobDescriptionId: string) {
     const resume = await this.resumeService.getResumeById(resumeId, userId);
 
-    let jobDescriptionText: string | undefined;
-    if (jobDescriptionId) {
-      const jobDescription = await this.jobDescriptionService.findById(
-        jobDescriptionId,
-        userId,
-      );
-      jobDescriptionText = jobDescription.description;
-    }
+    const jobDescription = await this.jobDescriptionService.findById(
+      jobDescriptionId,
+      userId,
+    );
+    const jobDescriptionText = jobDescription.description;
 
     const analysisResult = await this.aiAnalysisService.analyzeResume(
       resume.extractedText,
@@ -43,9 +40,7 @@ export class ResumeAnalysisService {
     const resumeAnalysis = new this.resumeAnalysisModel({
       userId: new Types.ObjectId(userId),
       resumeId: new Types.ObjectId(resumeId),
-      jobDescriptionId: jobDescriptionId
-        ? new Types.ObjectId(jobDescriptionId)
-        : undefined,
+      jobDescriptionId: new Types.ObjectId(jobDescriptionId),
       overallScore: analysisResult.overallScore,
       atsScore: analysisResult.atsScore,
       jobMatchScore: analysisResult.jobMatchScore,
@@ -66,7 +61,7 @@ export class ResumeAnalysisService {
       id: resumeAnalysis._id.toString(),
       userId: resumeAnalysis.userId.toString(),
       resumeId: resumeAnalysis.resumeId.toString(),
-      jobDescriptionId: resumeAnalysis.jobDescriptionId?.toString(),
+      jobDescriptionId: resumeAnalysis.jobDescriptionId.toString(),
       overallScore: resumeAnalysis.overallScore,
       atsScore: resumeAnalysis.atsScore,
       jobMatchScore: resumeAnalysis.jobMatchScore,

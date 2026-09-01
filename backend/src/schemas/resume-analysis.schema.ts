@@ -11,8 +11,8 @@ export class ResumeAnalysis {
   @Prop({ type: Types.ObjectId, ref: 'Resume', required: true, index: true })
   resumeId: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, ref: 'JobDescription', index: true })
-  jobDescriptionId?: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'JobDescription', required: true, index: true })
+  jobDescriptionId: Types.ObjectId;
 
   @Prop({ required: true, min: 0, max: 100 })
   overallScore: number;

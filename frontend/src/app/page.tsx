@@ -51,7 +51,7 @@ export default function Home() {
   };
 
   const handleAnalyze = async () => {
-    if (!uploadedResume) return;
+    if (!uploadedResume || !createdJobDescription) return;
 
     setAnalyzing(true);
     setError(null);
@@ -59,7 +59,7 @@ export default function Home() {
     try {
       const analysisResult = await api.analyzeResume({
         resumeId: uploadedResume.id,
-        jobDescriptionId: createdJobDescription?.id,
+        jobDescriptionId: createdJobDescription.id,
       });
       setAnalysis(analysisResult);
     } catch (err) {
@@ -151,7 +151,7 @@ export default function Home() {
 
               <button
                 onClick={handleAnalyze}
-                disabled={analyzing}
+                disabled={analyzing || !createdJobDescription}
                 className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
               >
                 {analyzing ? 'Analyzing...' : 'Analyze Resume'}

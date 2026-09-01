@@ -177,7 +177,7 @@ export const api = {
 
   async analyzeResume(data: {
     resumeId: string;
-    jobDescriptionId?: string;
+    jobDescriptionId: string;
   }): Promise<ResumeAnalysis> {
     const token = getAuthToken();
     const response = await fetch(`${API_URL}/api/analyses`, {
