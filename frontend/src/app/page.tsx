@@ -19,22 +19,21 @@ export default function Home() {
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Redirect to login if not authenticated
+  // Redirect to login only after auth check completes with no user
   useEffect(() => {
     if (!loading && !user) {
       router.push('/login');
     }
   }, [loading, user, router]);
 
-  if (loading) {
+  // Show minimal skeleton while auth is resolving, then redirect if unauthenticated
+  if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
       </div>
     );
   }
-
-  if (!user) return null;
 
   const handleUpload = async (file: File) => {
     const uploadedResume = await api.uploadResume(file);

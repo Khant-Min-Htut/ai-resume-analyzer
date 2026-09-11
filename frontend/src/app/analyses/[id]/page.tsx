@@ -43,7 +43,7 @@ export default function AnalysisDetailPage(props: { params: Promise<{ id: string
     router.push('/login');
   };
 
-  if (authLoading || (!user && !error)) {
+  if (!user && !error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-blue-600" />

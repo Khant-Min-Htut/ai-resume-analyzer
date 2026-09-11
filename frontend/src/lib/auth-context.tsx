@@ -78,6 +78,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }, []);
 
+  // Render children immediately — don't block on the auth check.
+  // Pages that need auth can read `loading` / `user` themselves.
   return (
     <AuthContext.Provider
       value={{ user, loading, login, register, logout }}
