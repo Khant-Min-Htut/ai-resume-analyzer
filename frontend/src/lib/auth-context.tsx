@@ -38,11 +38,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return;
       }
 
+      // Try to load cached user data from session storage first
+      const cachedUser = sessionStorage.getItem('cached_user');
+      if (cachedUser) {
+        try {
+          const parsedUser = JSON.parse(cachedUser);
+          if (!cancelled) setUser(parsedUser);
+          setLoading(false);
+          
+          // Still refresh in background to ensure data is fresh
+          api.getMe().then(me => {
+            if (!cancelled) {
+              setUser(me);
+              sessionStorage.setItem('cached_user', JSON.stringify(me));
+            }
+          }).catch(() => {
+            // If refresh fails, keep using cached data
+          });
+          return;
+        } catch {
+          // If parsing fails, continue with API call
+        }
+      }
+
       try {
         const me = await api.getMe();
-        if (!cancelled) setUser(me);
+        if (!cancelled) {
+          setUser(me);
+          sessionStorage.setItem('cached_user', JSON.stringify(me));
+        }
       } catch {
         localStorage.removeItem('auth_token');
+        sessionStorage.removeItem('cached_user');
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -60,6 +87,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const res = await api.login({ email, password });
       localStorage.setItem('auth_token', res.token);
       setUser(res.user);
+      sessionStorage.setItem('cached_user', JSON.stringify(res.user));
     },
     [],
   );
@@ -69,12 +97,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const res = await api.register({ email, name, password });
       localStorage.setItem('auth_token', res.token);
       setUser(res.user);
+      sessionStorage.setItem('cached_user', JSON.stringify(res.user));
     },
     [],
   );
 
   const logout = useCallback(() => {
     localStorage.removeItem('auth_token');
+    sessionStorage.removeItem('cached_user');
     setUser(null);
   }, []);
 

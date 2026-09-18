@@ -36,6 +36,14 @@ import {
     }),
     MongooseModule.forRoot(
       process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-resume-analyzer',
+      {
+        serverSelectionTimeoutMS: 3000,
+        heartbeatFrequencyMS: 10000,
+        connectTimeoutMS: 3000,
+        socketTimeoutMS: 45000,
+        maxPoolSize: 10,
+        minPoolSize: 2,
+      },
     ),
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },

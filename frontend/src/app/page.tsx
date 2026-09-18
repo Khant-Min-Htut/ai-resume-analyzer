@@ -2,12 +2,26 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { useAuth } from '@/lib/auth-context';
 import { api, Resume, JobDescription, ResumeAnalysis } from '@/lib/api';
-import ResumeUpload from '@/components/resume-upload';
-import JobDescriptionForm from '@/components/job-description-form';
-import AnalysisDashboard from '@/components/analysis-dashboard';
 import { LogOut, Loader2, FileText, BarChart3, History } from 'lucide-react';
+
+// Dynamic imports for code splitting
+const ResumeUpload = dynamic(() => import('@/components/resume-upload'), {
+  loading: () => <Loader2 className="w-6 h-6 animate-spin text-blue-600" />,
+  ssr: false,
+});
+
+const JobDescriptionForm = dynamic(() => import('@/components/job-description-form'), {
+  loading: () => <Loader2 className="w-6 h-6 animate-spin text-blue-600" />,
+  ssr: false,
+});
+
+const AnalysisDashboard = dynamic(() => import('@/components/analysis-dashboard'), {
+  loading: () => <Loader2 className="w-6 h-6 animate-spin text-blue-600" />,
+  ssr: false,
+});
 
 export default function Home() {
   const { user, loading, logout } = useAuth();
