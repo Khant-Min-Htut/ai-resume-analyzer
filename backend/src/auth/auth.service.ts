@@ -24,7 +24,6 @@ export class AuthService {
   ) {}
 
   async register(email: string, name: string, password: string) {
-    // Sanitize inputs
     const sanitizedName = sanitizeAndTruncate(name, 100).trim();
     if (!sanitizedName) {
       throw new BadRequestException('Name is required');
@@ -64,7 +63,6 @@ export class AuthService {
       email: email.toLowerCase().trim(),
     });
     if (!user) {
-      // Use constant-time message — don't reveal whether the email exists
       throw new UnauthorizedException('Invalid email or password');
     }
 

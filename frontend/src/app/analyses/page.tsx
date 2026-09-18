@@ -100,7 +100,6 @@ export default function AnalysisHistoryPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
         <div className="max-w-5xl mx-auto">
-          {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-10">
             <div className="flex items-center gap-3 sm:gap-4">
               <button
@@ -128,14 +127,12 @@ export default function AnalysisHistoryPage() {
             </button>
           </div>
 
-          {/* Loading state */}
           {loading && (
             <div className="flex items-center justify-center py-20">
               <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
             </div>
           )}
 
-          {/* Error state */}
           {!loading && error && (
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-12 text-center">
               <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
@@ -152,7 +149,6 @@ export default function AnalysisHistoryPage() {
             </div>
           )}
 
-          {/* Empty state */}
           {!loading && !error && analyses.length === 0 && (
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-12 text-center">
               <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -171,7 +167,6 @@ export default function AnalysisHistoryPage() {
             </div>
           )}
 
-          {/* Analysis list */}
           {!loading && !error && analyses.length > 0 && (
             <div className="space-y-4">
               {analyses.map((analysis) => {
@@ -185,7 +180,6 @@ export default function AnalysisHistoryPage() {
                     className="w-full text-left bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl border border-transparent hover:border-blue-200 dark:hover:border-blue-800 p-4 sm:p-6 transition-all duration-200 group"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                      {/* Left: metadata */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <FileText className="w-4 h-4 text-blue-500 shrink-0" />
@@ -213,7 +207,6 @@ export default function AnalysisHistoryPage() {
                         </div>
                       </div>
 
-                      {/* Right: score chips */}
                       <div className="flex items-center gap-2 sm:gap-3 shrink-0 flex-wrap sm:flex-nowrap">
                         <ScoreChip
                           icon={<Target className="w-3.5 h-3.5" />}

@@ -36,9 +36,7 @@ export class Resume {
 
 export const ResumeSchema = SchemaFactory.createForClass(Resume);
 
-// Ensure `id` is always present and `_id` is removed on JSON output
 ResumeSchema.set('toJSON', {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(_doc: any, ret: any) {
     ret.id = ret._id.toString();
     delete ret._id;
@@ -47,6 +45,5 @@ ResumeSchema.set('toJSON', {
   },
 });
 
-// Indexes
 ResumeSchema.index({ userId: 1, createdAt: -1 });
 ResumeSchema.index({ createdAt: -1 });

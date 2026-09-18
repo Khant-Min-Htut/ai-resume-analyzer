@@ -7,7 +7,6 @@ import { useAuth } from '@/lib/auth-context';
 import { api, Resume, JobDescription, ResumeAnalysis } from '@/lib/api';
 import { LogOut, Loader2, FileText, BarChart3, History } from 'lucide-react';
 
-// Dynamic imports for code splitting
 const ResumeUpload = dynamic(() => import('@/components/resume-upload'), {
   loading: () => <Loader2 className="w-6 h-6 animate-spin text-blue-600" />,
   ssr: false,
@@ -33,14 +32,12 @@ export default function Home() {
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Redirect to login only after auth check completes with no user
   useEffect(() => {
     if (!loading && !user) {
       router.push('/login');
     }
   }, [loading, user, router]);
 
-  // Show minimal skeleton while auth is resolving, then redirect if unauthenticated
   if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
@@ -91,7 +88,6 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
         <div className="max-w-4xl mx-auto">
-          {/* Header with user info and logout */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">

@@ -68,9 +68,7 @@ export class ResumeAnalysis {
 export const ResumeAnalysisSchema =
   SchemaFactory.createForClass(ResumeAnalysis);
 
-// Ensure `id` is always present and `_id` is removed on JSON output
 ResumeAnalysisSchema.set('toJSON', {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(_doc: any, ret: any) {
     ret.id = ret._id.toString();
     delete ret._id;
@@ -79,7 +77,6 @@ ResumeAnalysisSchema.set('toJSON', {
   },
 });
 
-// Indexes
 ResumeAnalysisSchema.index({ userId: 1, createdAt: -1 });
 ResumeAnalysisSchema.index({ resumeId: 1, createdAt: -1 });
 ResumeAnalysisSchema.index({ jobDescriptionId: 1, createdAt: -1 });

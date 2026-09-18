@@ -34,7 +34,6 @@ const sectionIcons: Record<string, string> = {
 export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) {
   return (
     <div className="space-y-8">
-      {/* Score Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         <ScoreCard
           label="Overall Score"
@@ -58,7 +57,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
         )}
       </div>
 
-      {/* Score Breakdown */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
@@ -75,7 +73,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
         </CardContent>
       </Card>
 
-      {/* Summary */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
@@ -88,7 +85,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
         </CardContent>
       </Card>
 
-      {/* Strengths & Weaknesses */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <Card>
           <CardHeader>
@@ -129,7 +125,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
         </Card>
       </div>
 
-      {/* Skills */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <Card>
           <CardHeader>
@@ -174,7 +169,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
         </Card>
       </div>
 
-      {/* Keywords */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <Card>
           <CardHeader>
@@ -219,7 +213,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
         </Card>
       </div>
 
-      {/* Section Feedback */}
       {analysis.sectionFeedback && (
         <Card>
           <CardHeader>
@@ -247,7 +240,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
         </Card>
       )}
 
-      {/* Recommendations */}
       <Card className="border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg text-blue-700 dark:text-blue-300">
@@ -271,8 +263,6 @@ export default function AnalysisDashboard({ analysis }: AnalysisDashboardProps) 
     </div>
   );
 }
-
-/* ── Internal sub-component ── */
 
 function ScoreBar({ label, score }: { label: string; score: number }) {
   return (

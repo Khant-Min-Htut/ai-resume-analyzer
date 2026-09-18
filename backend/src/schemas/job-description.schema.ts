@@ -24,9 +24,7 @@ export class JobDescription {
 export const JobDescriptionSchema =
   SchemaFactory.createForClass(JobDescription);
 
-// Ensure `id` is always present and `_id` is removed on JSON output
 JobDescriptionSchema.set('toJSON', {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(_doc: any, ret: any) {
     ret.id = ret._id.toString();
     delete ret._id;
@@ -35,7 +33,6 @@ JobDescriptionSchema.set('toJSON', {
   },
 });
 
-// Indexes
 JobDescriptionSchema.index({ userId: 1, createdAt: -1 });
 JobDescriptionSchema.index({ company: 1, createdAt: -1 });
 JobDescriptionSchema.index({ createdAt: -1 });

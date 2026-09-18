@@ -26,7 +26,7 @@ export class ResumeController {
   @UseInterceptors(
     FileInterceptor('file', {
       limits: {
-        fileSize: 10 * 1024 * 1024, // 10MB
+        fileSize: 10 * 1024 * 1024,
         files: 1,
       },
       fileFilter: (req, file, callback) => {

@@ -28,7 +28,6 @@ export interface AnalysisResult {
   };
 }
 
-/** Shape we expect from the AI JSON response. */
 interface RawAnalysis {
   overallScore?: unknown;
   atsScore?: unknown;
@@ -134,7 +133,6 @@ export class AiAnalysisService {
           );
         }
       }
-      // Log error type for debugging
       this.logger.error(`AI analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
       throw new InternalServerErrorException(
         'Failed to analyze resume. Please try again.',

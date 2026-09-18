@@ -38,26 +38,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      // Try to load cached user data from session storage first
       const cachedUser = sessionStorage.getItem('cached_user');
       if (cachedUser) {
         try {
           const parsedUser = JSON.parse(cachedUser);
           if (!cancelled) setUser(parsedUser);
           setLoading(false);
-          
-          // Still refresh in background to ensure data is fresh
+
           api.getMe().then(me => {
             if (!cancelled) {
               setUser(me);
               sessionStorage.setItem('cached_user', JSON.stringify(me));
             }
           }).catch(() => {
-            // If refresh fails, keep using cached data
           });
           return;
         } catch {
-          // If parsing fails, continue with API call
         }
       }
 
@@ -108,8 +104,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }, []);
 
-  // Render children immediately — don't block on the auth check.
-  // Pages that need auth can read `loading` / `user` themselves.
   return (
     <AuthContext.Provider
       value={{ user, loading, login, register, logout }}

@@ -86,8 +86,6 @@ async function handleResponse<T>(response: Response): Promise<T> {
 }
 
 export const api = {
-  // ── Auth ──
-
   async register(data: { email: string; name: string; password: string }): Promise<AuthResponse> {
     const response = await fetch(`${API_URL}/api/auth/register`, {
       method: 'POST',
@@ -113,8 +111,6 @@ export const api = {
     });
     return handleResponse<User>(response);
   },
-
-  // ── Resumes ──
 
   async uploadResume(file: File): Promise<Resume> {
     const token = getAuthToken();
@@ -145,8 +141,6 @@ export const api = {
     return handleResponse<Resume[]>(response);
   },
 
-  // ── Job Descriptions ──
-
   async createJobDescription(data: { title: string; company: string; description: string }): Promise<JobDescription> {
     const token = getAuthToken();
     const response = await fetch(`${API_URL}/api/job-descriptions`, {
@@ -172,8 +166,6 @@ export const api = {
     });
     return handleResponse<JobDescription[]>(response);
   },
-
-  // ── Analyses ──
 
   async analyzeResume(data: {
     resumeId: string;

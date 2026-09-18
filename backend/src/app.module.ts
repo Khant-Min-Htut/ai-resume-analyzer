@@ -21,8 +21,6 @@ import {
 
 @Module({
   imports: [
-    // ── Rate limiting: 120 requests per 60 s per IP ──
-    // Individual controllers can apply stricter per-route limits via @Throttle().
     ThrottlerModule.forRoot({
       throttlers: [
         {
